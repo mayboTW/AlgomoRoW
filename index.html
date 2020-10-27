@@ -2,19 +2,24 @@
 <html>
   <head>
     <title>Hello World</title>
-    <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/css/uikit.min.css" />
-    <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/js/uikit-icons.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
   </head>
   <body>
-    <div class="uk-section uk-section-secondary uk-light">
-      <h1>Hello World</h1>
-      <p uk-margin>
-        <button id="playbtn" class="uk-button uk-button-secondary ">Play</button>
-        <button id="stopbtn" class="uk-button uk-button-secondary ">Stop</button>
-      </p>
+    <div class="uk-section uk-section-secondary uk-light .uk-height-max-large">
+      <h1>Hello Row</h1>
+      <hr>
+      <ul class="uk-iconnav">
+        <a  id="refreshbtn" uk-icon="icon: refresh"></a>
+        <a id="playbtn" uk-icon="icon: play"></a>
+        <a id="deletebtn" uk-icon="icon: trash"></a>
+      </ul>
+      <div class="uk-height-large uk-card uk-card-body uk-flex uk-flex-center uk-flex-middle">
+        <div id="svgPane" class="uk-container uk-container-small"></div>
+      </div>
       <script src="./src/index.js"></script>
     </div>
   </body>
