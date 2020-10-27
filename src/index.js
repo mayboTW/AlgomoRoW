@@ -1,4 +1,19 @@
 UIkit.util.on('#refreshbtn', 'click', function () {
+    recreateSegments();
+});
+
+UIkit.util.on('#deletebtn', 'click', function () {
+    console.log('clear');
+    $("#svgPane").empty();
+});
+
+document.onkeyup = function(e) {
+    if (e.shiftKey && e.which == 82) {
+        recreateSegments();
+    }
+};
+
+function recreateSegments() {
     const num = Math.floor(Math.random() * 10)  + 1;
     $("#svgPane").empty();
     var draw = SVG().addTo('#svgPane').size(1000, 300);
@@ -7,9 +22,4 @@ UIkit.util.on('#refreshbtn', 'click', function () {
         var rect = draw.rect(10, h).fill('#80FF00').move(20 + i*20, 100-h);
     }
     console.log('#: ' + num);
-});
-
-UIkit.util.on('#deletebtn', 'click', function () {
-    console.log('clear');
-    $("#svgPane").empty();
-});
+}
