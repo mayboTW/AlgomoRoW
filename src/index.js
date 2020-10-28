@@ -1,4 +1,4 @@
-var values;
+var values = [];
 
 UIkit.util.on('#refreshbtn', 'click', function () {
     refreshValues();
@@ -17,10 +17,10 @@ UIkit.util.on('#playbtn', 'click', function () {
         }
     }
 
-    var draw = SVG().addTo('#svgPane').size(1000, 300);
+    var draw = SVG().addTo('#svgPane').size(600, 300);
     for (var i=0; i!=values.length; i++){
         var h = values[i];
-        var rect = draw.rect(10, h).fill('#80FF00').move(20 + i*20, 100-h);
+        var rect = draw.rect(10, h).fill('#80FF00').move(20 + i*20, 300-h);
     }
     console.log('#: ' + values.length + ", Values: " + values);
 });
@@ -31,8 +31,10 @@ UIkit.util.on('#deletebtn', 'click', function () {
 });
 
 document.onkeyup = function(e) {
-    if (e.shiftKey && e.which == 82) {
+    if (e.key == 'r') {
         refreshValues();
+    } else if (e.key == 'p') {
+
     }
 };
 
@@ -40,11 +42,11 @@ function refreshValues() {
     const num = Math.floor(Math.random() * 10)  + 10;
     $("#svgPane").empty();
     values = [];
-    var draw = SVG().addTo('#svgPane').size(1000, 300);
+    var draw = SVG().addTo('#svgPane').size(600, 300);
     for (var i=0; i!=num; i++){
-        const h = Math.floor(Math.random() * 100) + 1;
+        const h = Math.floor(Math.random() * 300) + 1;
         values.push(h);
-        var rect = draw.rect(10, h).fill('#80FF00').move(20 + i*20, 100-h);
+        var rect = draw.rect(10, h).fill('#80FF00').move(20 + i*20, 300-h);
     }
     console.log('#: ' + num + ", Values: " + values);
 }
