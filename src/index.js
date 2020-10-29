@@ -1,4 +1,5 @@
-var values = [];
+var draw = SVG().addTo('#svgPane').size(600, 300);
+var rectObjs = [];
 
 UIkit.util.on('#refreshbtn', 'click', function () {
     refreshValues();
@@ -24,33 +25,29 @@ document.onkeyup = function(e) {
 
 function refreshValues() {
     const num = Math.floor(Math.random() * 10)  + 10;
-    $("#svgPane").empty();
-    values = [];
-    var draw = SVG().addTo('#svgPane').size(600, 300);
+    draw.clear();
+    rectObjs = [];
     for (var i=0; i!=num; i++){
         const h = Math.floor(Math.random() * 300) + 1;
-        values.push(h);
         var rect = draw.rect(10, h).fill('#80FF00').move(20 + i*20, 300-h);
+        var rectObj = {value: h, rect: rect};
+        rectObjs.push(rectObj);
     }
-    console.log('#: ' + num + ", Values: " + values);
 }
 
 function bubbleSort() {
-    $("#svgPane").empty();
-    for(var i=0; i!=values.length; ++i) {
-        for(var j=i+1; j!=values.length; ++j) {
-            if (values[i] > values[j]) {
-                var temp = values[i];
-                values[i] = values[j];
-                values[j] = temp;
+    for(var i=0; i!=rectObjs.length; ++i) {
+        for(var j=i+1; j!=rectObjs.length; ++j) {
+            if (rectObjs[i].value > rectObjs[j].value) {
+                var temp = rectObjs[i];
+                rectObjs[i] = rectObjs[j];
+                rectObjs[j] = temp;
             }
         }
     }
 
-    var draw = SVG().addTo('#svgPane').size(600, 300);
-    for (var i=0; i!=values.length; i++){
-        var h = values[i];
-        var rect = draw.rect(10, h).fill('#80FF00').move(20 + i*20, 300-h);
+    for (var i=0; i!=rectObjs.length; i++){
+        var h = rectObjs[i].value;
+        rectObjs[i].rect.move(20 + i*20, 300-h);
     }
-    console.log('#: ' + values.length + ", Values: " + values);
 }
